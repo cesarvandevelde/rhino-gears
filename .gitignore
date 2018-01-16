@@ -1,0 +1,4 @@
+*.macrhi
+*.rhi
+**.pyc
+.DS_Store
