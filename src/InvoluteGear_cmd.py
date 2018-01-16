@@ -105,7 +105,8 @@ def draw_gear(teeth,
 params = {
     "n":  30,
     "m":  1,
-    "pa": 20
+    "pa": 20,
+    "pc": False
 }
 
 
@@ -120,6 +121,10 @@ def RunCommand(is_interactive):
     params["pa"] = rs.GetReal(message="Pressure angle",
                               number=params["pa"], minimum=0, maximum=45)
 
+    params["pc"], = rs.GetBoolean(message="Output options",
+                                  items=("PitchCircle", "No", "Yes"),
+                                  defaults=(params["pc"]))
+
     cplane = rs.ViewCPlane()  # Get current CPlane
     cplane = rs.MovePlane(cplane, center)
     xform = rs.XformChangeBasis(cplane, rs.WorldXYPlane())
@@ -129,7 +134,8 @@ def RunCommand(is_interactive):
 
     gear = draw_gear(teeth=params["n"],
                      module=params["m"],
-                     pressure_angle=params["pa"])
+                     pressure_angle=params["pa"],
+                     draw_pitch_circle=params["pc"])
 
     rs.ViewCPlane(plane=old_plane)
     rs.TransformObjects(gear, xform)
