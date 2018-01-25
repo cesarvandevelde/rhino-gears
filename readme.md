@@ -9,9 +9,11 @@ versions of Rhino 5.
 ![](assets/plugin-demo.gif)
 
 # Installation
-Download the appropriate file from the Releases page, `RhinoGears.rhi` for
-Windows users or `RhinoGears.macrhi` for Mac users. Double-click to install the
-plugin automatically. Restart Rhinoceros to make sure the plugin is loaded.
+Download the appropriate installer file from the
+[Releases](https://github.com/cesarvandevelde/rhino-gears/releases) page,
+`RhinoGears.rhi` for Windows users or `RhinoGears.macrhi` for Mac users.
+Double-click to install the plugin automatically. Restart Rhinoceros to make
+sure the plugin is loaded.
 
 # Usage
 After installation, the following commands will be available:
