@@ -121,9 +121,10 @@ def RunCommand(is_interactive):
     params["pa"] = rs.GetReal(message="Pressure angle",
                               number=params["pa"], minimum=0, maximum=45)
 
-    params["pc"], = rs.GetBoolean(message="Output options",
-                                  items=("PitchCircle", "No", "Yes"),
-                                  defaults=(params["pc"]))
+    bool_opts = rs.GetBoolean(message="Output options",
+                              items=(("PitchCircle", "No", "Yes"),),
+                              defaults=(params["pc"],))
+    params["pc"] = bool_opts[0] if bool_opts else False
 
     cplane = rs.ViewCPlane()  # Get current CPlane
     cplane = rs.MovePlane(cplane, center)
