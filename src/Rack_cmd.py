@@ -21,7 +21,7 @@ def draw_rack(length, module, pressure_angle=20):
     num_instances = int((length - tip_w) / 2 / circular_pitch) + 1
 
     y_vals = [module]
-    y_vals += [-module, -module, module, module, ] * num_instances
+    y_vals += [-module, -module, module, module] * num_instances
     y_vals = list(reversed(y_vals)) + y_vals
 
     x_vals = [tip_w / 2]
