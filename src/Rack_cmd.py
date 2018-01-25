@@ -46,17 +46,25 @@ def RunCommand(is_interactive):
     pitch_line = rs.GetObject(message="Select pitch line",
                               filter=rs.filter.curve,
                               preselect=True)
+    if pitch_line is None:
+        return 1  # Cancel
 
     if not rs.IsLine(pitch_line):
         print "Selected curve is not a line!"
-        return 1
+        return 1  # Cancel
 
     rs.SelectObjects(pitch_line)
 
-    params["m"] = rs.GetReal(message="Rack module",
-                             number=params["m"])
-    params["pa"] = rs.GetReal(message="Pressure angle",
-                              number=params["pa"], minimum=0, maximum=45)
+    m = rs.GetReal(message="Rack module",
+                   number=params["m"])
+    pa = rs.GetReal(message="Pressure angle",
+                    number=params["pa"], minimum=0, maximum=45)
+
+    if m is None or pa is None:
+        return 1  # Cancel
+
+    params["m"] = m
+    params["pa"] = pa
 
     pitch_line_center = rs.CurveMidPoint(pitch_line)
     pitch_line_start = rs.CurveStartPoint(pitch_line)
@@ -85,6 +93,8 @@ def RunCommand(is_interactive):
     rs.EnableRedraw(True)
     rs.UnselectAllObjects()
     rs.SelectObjects(rack)
+
+    return 0  # Success
 
 
 if __name__ == "__main__":

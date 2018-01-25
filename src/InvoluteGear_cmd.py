@@ -114,17 +114,27 @@ def RunCommand(is_interactive):
     global params
 
     center = rs.GetPoint(message="Select center point")
-    params["n"] = rs.GetInteger(message="Number of teeth",
-                                number=params["n"], minimum=4)
-    params["m"] = rs.GetReal(message="Gear module",
-                             number=params["m"])
-    params["pa"] = rs.GetReal(message="Pressure angle",
-                              number=params["pa"], minimum=0, maximum=45)
+
+    n = rs.GetInteger(message="Number of teeth",
+                      number=params["n"], minimum=4)
+
+    m = rs.GetReal(message="Gear module",
+                   number=params["m"])
+
+    pa = rs.GetReal(message="Pressure angle",
+                    number=params["pa"], minimum=0, maximum=45)
 
     bool_opts = rs.GetBoolean(message="Output options",
                               items=(("PitchCircle", "No", "Yes"),),
                               defaults=(params["pc"],))
-    params["pc"] = bool_opts[0] if bool_opts else False
+
+    if None in [center, n, m, pa, bool_opts]:
+        return 1  # Cancel
+
+    params["n"] = n
+    params["m"] = m
+    params["pa"] = pa
+    params["pc"] = bool_opts[0]
 
     cplane = rs.ViewCPlane()  # Get current CPlane
     cplane = rs.MovePlane(cplane, center)
@@ -143,6 +153,8 @@ def RunCommand(is_interactive):
 
     rs.EnableRedraw(True)
     rs.SelectObjects(gear)
+
+    return 0  # Success
 
 
 if __name__ == "__main__":
