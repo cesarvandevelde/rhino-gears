@@ -11,13 +11,18 @@ def build_installer():
     path_prefix = "PythonPlugIns/{0.title} {0.id}/dev/".format(__plugin__)
     files = glob.glob("src/*.py")
 
-    # TODO: Generate .rhi installer for Windows
-    with ZipFile("{}.macrhi".format(__plugin__.title), "w") as archive:
-        for f in files:
-            archive_path = os.path.relpath(f, "src/")
-            archive_path = os.path.join(path_prefix + archive_path)
+    macrhi = ZipFile("{}.macrhi".format(__plugin__.title), "w")
+    rhi = ZipFile("{}.rhi".format(__plugin__.title), "w")
 
-            archive.write(f, archive_path)
+    for f in files:
+        archive_path_rhi = os.path.relpath(f, "src/")
+        archive_path_macrhi = os.path.join(path_prefix + archive_path_rhi)
+
+        rhi.write(f, archive_path_rhi)
+        macrhi.write(f, archive_path_macrhi)
+
+    macrhi.close()
+    rhi.close()
 
 
 if __name__ == "__main__":
