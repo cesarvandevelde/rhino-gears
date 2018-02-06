@@ -4,15 +4,19 @@ from functools import partial
 import rhinoscriptsyntax as rs
 
 
-def generate_involute_pts(base_circle_diam, start_angle, end_angle, samples):
+def generate_involute_pts(base_circle_diam,
+                          start_angle,
+                          end_angle,
+                          angle_mod,
+                          samples):
     pts = []
-    step = (start_angle - end_angle) / samples
+    step = (start_angle - angle_mod - end_angle) / samples
+    base_circle_r = base_circle_diam/2
 
     # Calculate involute
     for i in xrange(samples + 1):
-        pos = i * step
-        height = sqrt(pos**2 * (base_circle_diam/2)**2
-                      + (base_circle_diam/2)**2)
+        pos = angle_mod + i * step
+        height = sqrt(pos**2 * base_circle_r**2 + base_circle_r**2)
         height_angle = start_angle - pos + atan(pos)
 
         pt = [height * cos(height_angle), height * sin(height_angle), 0]
@@ -72,8 +76,9 @@ def generate_gear_crv(teeth,
 
     invol_pts = generate_involute_pts(
                     base_circle_diam=base_circle,
-                    start_angle=invol_start_angle - invol_angle_mod,
+                    start_angle=invol_start_angle,
                     end_angle=invol_end_angle,
+                    angle_mod=invol_angle_mod,
                     samples=involute_samples)
     invol_pts = map(tilt, invol_pts)
 
