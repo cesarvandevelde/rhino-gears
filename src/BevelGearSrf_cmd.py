@@ -60,7 +60,7 @@ def RunCommand(is_interactive):
                              cone_angle=params["ca"])
 
     # Calculate pitch cone tip
-    cone_tip = [0, 0, (m * n / 2) * tan(radians(ca/2))]
+    cone_tip = [0, 0, (m * n / 2) / tan(radians(ca/2))]
     bevel_gear_srf = rs.ExtrudeCurvePoint(gear, cone_tip)
 
     rs.ViewCPlane(plane=old_plane)
