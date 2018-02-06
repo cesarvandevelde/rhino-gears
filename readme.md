@@ -23,6 +23,12 @@ After installation, the following commands will be available:
 
 - `Rack` &mdash; Generate a rack curve for a rack and pinion system.
 
+- `BevelGearSrf` &mdash; Generate a bevel (conical) gear surface with a specific
+  cone angle. Optionally outputs the gear's pitch cone surface.
+
+- `HelicalGearSrf` &mdash; Generate a helical gear surface with a specific helix
+  angle. Optionally outputs the gear's pitch cylinder surface.
+
 ## General hints
 
 1. Gears that mesh correctly have the same module and the same pressure angle.
