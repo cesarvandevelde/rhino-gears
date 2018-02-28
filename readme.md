@@ -29,6 +29,11 @@ After installation, the following commands will be available:
 - `HelicalGearSrf` &mdash; Generate a helical gear surface with a specific helix
   angle. Optionally outputs the gear's pitch cylinder surface.
 
+**Important:** There is a bug in Rhino (Win) where Python plugin commands don't
+get recognized immediately in some cases. If this happens, simply run the
+command `EditPythonScript` first to fix the issue. The bug is described
+[here](http://developer.rhino3d.com/guides/rhinopython/creating-rhino-commands-using-python/).
+
 ## General hints
 
 1. Gears that mesh correctly have the same module and the same pressure angle.
