@@ -9,11 +9,16 @@ versions of Rhino 5.
 ![](assets/plugin-demo.gif)
 
 # Installation
-Download the appropriate installer file from the
-[Releases](https://github.com/cesarvandevelde/rhino-gears/releases) page,
-`RhinoGears.rhi` for Windows users or `RhinoGears.macrhi` for Mac users.
-Double-click to install the plugin automatically. Restart Rhinoceros to make
-sure the plugin is loaded.
+
+- Download the appropriate installer file from the
+[Releases](https://github.com/cesarvandevelde/rhino-gears/releases) page.
+  * `RhinoGears.rhi` for Windows users
+  * `RhinoGears.macrhi` for Mac users.
+
+- Double-click to install the plugin.
+  * Windows: be sure to select _"install just for me"_, not _"install for everyone"_. (see [this thread](https://www.food4rhino.com/app/rhinogears?page=2#27777) for the reason why)
+
+- Restart Rhinoceros to make sure the plugin is loaded.
 
 # Usage
 After installation, the following commands will be available:
